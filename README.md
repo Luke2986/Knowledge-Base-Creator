@@ -77,29 +77,25 @@ La skill si attiva anche senza nominarla, con richieste come "voglio costruire q
 Knowledge-Base-Creator/
 ├─ README.md
 ├─ knowledge-base-creator.skill      pacchetto da caricare su Claude.ai
-├─ knowledge-base-creator/           la skill, da copiare in Claude Code
-│  ├─ SKILL.md
-│  ├─ references/
-│  │  ├─ lovable.md
-│  │  ├─ replit.md
-│  │  ├─ claude-code.md
-│  │  ├─ altro.md
-│  │  └─ esempio-contesto-ai.md
-│  └─ assets/
-│     └─ template/
-│        ├─ 00-regole-permanenti.md
-│        ├─ 01-master-plan.md
-│        ├─ 02-design-system.md
-│        ├─ 03-prompt-strumento.md
-│        ├─ 04-contesto-ai-runtime.md
-│        ├─ 05-decision-log.md
-│        ├─ 06-tasks.md
-│        └─ 07-architecture.md
-└─ esempi/
-   └─ ruota-competenze-pm/           i file prodotti dalla skill per un'app su Lovable
+└─ knowledge-base-creator/           la skill, da copiare in Claude Code
+   ├─ SKILL.md
+   ├─ references/
+   │  ├─ lovable.md
+   │  ├─ replit.md
+   │  ├─ claude-code.md
+   │  ├─ altro.md
+   │  └─ esempio-contesto-ai.md
+   └─ assets/
+      └─ template/
+         ├─ 00-regole-permanenti.md
+         ├─ 01-master-plan.md
+         ├─ 02-design-system.md
+         ├─ 03-prompt-strumento.md
+         ├─ 04-contesto-ai-runtime.md
+         ├─ 05-decision-log.md
+         ├─ 06-tasks.md
+         └─ 07-architecture.md
 ```
-
-La cartella `esempi/` mostra cosa consegna la skill: sono gli otto file generati per un'app di autovalutazione delle competenze da Product Manager, costruita su Lovable con salvataggio nel browser e AI a runtime.
 
 ## Voce e lingua
 
