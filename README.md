@@ -47,7 +47,12 @@ Su Claude Code, quando c'è materiale sufficiente, l'architettura si divide anch
 
 Su Claude.ai carica il file `knowledge-base-creator.skill` dalla sezione Skills delle impostazioni.
 
-In Claude Code copia la cartella della skill in `~/.claude/skills/knowledge-base-creator/` per averla in tutti i progetti, oppure in `.claude/skills/knowledge-base-creator/` dentro un singolo repository.
+In Claude Code copia la cartella `knowledge-base-creator/` di questo repository in `~/.claude/skills/` per averla in tutti i progetti, oppure in `.claude/skills/` dentro un singolo repository:
+
+```bash
+git clone https://github.com/Luke2986/Knowledge-Base-Creator.git
+mkdir -p ~/.claude/skills && cp -R Knowledge-Base-Creator/knowledge-base-creator ~/.claude/skills/
+```
 
 ## Come si usa
 
@@ -69,33 +74,40 @@ La skill si attiva anche senza nominarla, con richieste come "voglio costruire q
 ## Struttura del repository
 
 ```text
-knowledge-base-creator/
-├─ SKILL.md
-├─ references/
-│  ├─ lovable.md
-│  ├─ replit.md
-│  ├─ claude-code.md
-│  ├─ altro.md
-│  └─ esempio-contesto-ai.md
-└─ assets/
-   └─ template/
-      ├─ 00-regole-permanenti.md
-      ├─ 01-master-plan.md
-      ├─ 02-design-system.md
-      ├─ 03-prompt-strumento.md
-      ├─ 04-contesto-ai-runtime.md
-      ├─ 05-decision-log.md
-      ├─ 06-tasks.md
-      └─ 07-architecture.md
+Knowledge-Base-Creator/
+├─ README.md
+├─ knowledge-base-creator.skill      pacchetto da caricare su Claude.ai
+├─ knowledge-base-creator/           la skill, da copiare in Claude Code
+│  ├─ SKILL.md
+│  ├─ references/
+│  │  ├─ lovable.md
+│  │  ├─ replit.md
+│  │  ├─ claude-code.md
+│  │  ├─ altro.md
+│  │  └─ esempio-contesto-ai.md
+│  └─ assets/
+│     └─ template/
+│        ├─ 00-regole-permanenti.md
+│        ├─ 01-master-plan.md
+│        ├─ 02-design-system.md
+│        ├─ 03-prompt-strumento.md
+│        ├─ 04-contesto-ai-runtime.md
+│        ├─ 05-decision-log.md
+│        ├─ 06-tasks.md
+│        └─ 07-architecture.md
+└─ esempi/
+   └─ ruota-competenze-pm/           i file prodotti dalla skill per un'app su Lovable
 ```
+
+La cartella `esempi/` mostra cosa consegna la skill: sono gli otto file generati per un'app di autovalutazione delle competenze da Product Manager, costruita su Lovable con salvataggio nel browser e AI a runtime.
 
 ## Voce e lingua
 
-La skill scrive in italiano, registro tu, con regole di voce fisse che finiscono anche nei testi dell'app e nelle risposte dell'AI a runtime: niente trattino lungo, niente emoji, niente costruzioni "non solo X, ma anche Y", e un elenco di parole bandite. Se preferisci altre regole, modificale in `SKILL.md` e in `assets/template/00-regole-permanenti.md`.
+La skill scrive in italiano, registro tu, con regole di voce fisse che finiscono anche nei testi dell'app e nelle risposte dell'AI a runtime: niente trattino lungo, niente emoji, niente costruzioni "non solo X, ma anche Y", e un elenco di parole bandite. Se preferisci altre regole, modificale in `knowledge-base-creator/SKILL.md` e in `knowledge-base-creator/assets/template/00-regole-permanenti.md`.
 
 ## Limiti
 
-La skill prepara il progetto, non scrive il codice e non serve per rimettere in ordine un'app già in sviluppo avanzato. Le informazioni sugli strumenti riflettono lo stato di Lovable, Replit e Claude Code a settembre 2026: le piattaforme cambiano spesso, quindi i file in `references/` vanno aggiornati quando cambia il modo in cui gestiscono contesto, database o segreti.
+La skill prepara il progetto, non scrive il codice e non serve per rimettere in ordine un'app già in sviluppo avanzato. Le informazioni sugli strumenti riflettono lo stato di Lovable, Replit e Claude Code a settembre 2026: le piattaforme cambiano spesso, quindi i file in `knowledge-base-creator/references/` vanno aggiornati quando cambia il modo in cui gestiscono contesto, database o segreti.
 
 ## Autore
 
