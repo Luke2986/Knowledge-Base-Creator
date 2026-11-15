@@ -1,48 +1,48 @@
-<!-- TEMPLATE. Parti dai riferimenti dell'utente o dalla direzione scelta. Token concreti, mai "colori eleganti": Lovable e gli altri builder applicano meglio valori esatti. -->
+<!-- TEMPLATE. Start from the user's references or the chosen direction. Concrete tokens, never "elegant colours": Lovable and the other builders apply exact values better. Write it in the output language. -->
 
-# Design system: <nome progetto>
+# Design system: <project name>
 
-<!-- Una frase sul carattere dell'interfaccia e sull'unico elemento che deve attirare l'attenzione. -->
+<!-- One sentence on the character of the interface and on the single element that must draw attention. -->
 
-## Gerarchia visiva
-<!-- Elenco numerato degli elementi della schermata principale in ordine di importanza. -->
+## Visual hierarchy
+<!-- Numbered list of the elements of the main screen in order of importance. -->
 
-## Token
+## Tokens
 
 ```css
 :root{
-  /* sfondo e superfici */
-  /* testo */
-  /* accento primario: dove compare e solo lì */
-  /* accento secondario, se serve */
-  /* linee e stati: errore, successo */
-  /* raggi */
-  /* tipografia: display, body, mono se servono numeri */
+  /* background and surfaces */
+  /* text */
+  /* primary accent: where it appears and only there */
+  /* secondary accent, if needed */
+  /* lines and states: error, success */
+  /* radii */
+  /* typography: display, body, mono if numbers are needed */
 }
 ```
 
-<!-- Mapping su Tailwind: usa questi valori nel tema, non i grigi di default. -->
+<!-- Mapping to Tailwind: use these values in the theme, not the default greys. -->
 
-## Colori e ruoli
-<!-- Per ogni colore: dove compare. Contrasto AA verificato su testo e bottoni. -->
+## Colours and roles
+<!-- For each colour: where it appears. AA contrast checked on text and buttons. -->
 
-## Tipografia
-<!-- Font, pesi, scala in px per H1, H2, body, descrizioni, micro. Body mai sotto 15px. Caricamento con font-display swap. -->
+## Typography
+<!-- Fonts, weights, scale in px for H1, H2, body, descriptions, micro. Body never under 15px. Loading with font-display swap. -->
 
-## Spaziatura, layout e breakpoint
-<!-- Larghezza massima, padding per breakpoint, colonne per breakpoint con i valori espliciti (per esempio mobile sotto 640px, tablet, desktop da 1024px). -->
+## Spacing, layout and breakpoints
+<!-- Maximum width, padding per breakpoint, columns per breakpoint with explicit values (for example mobile under 640px, tablet, desktop from 1024px). -->
 
-## Componenti
-<!-- Per ogni componente usato nell'MVP: aspetto, hover, focus, disabilitato. Solo quelli che servono. -->
+## Components
+<!-- For each component used in the MVP: appearance, hover, focus, disabled. Only the ones needed. -->
 
-## Stati
-<!-- Vuoto, caricamento (skeleton o spinner, e dove), errore, successo, dati assenti o storage non disponibile. Ogni stato ha un task nel 06. -->
+## States
+<!-- Empty, loading (skeleton or spinner, and where), error, success, missing data or storage unavailable. Each state has a task in 06. -->
 
-## Movimento
-<!-- Solo micro transizioni, e cosa succede con prefers-reduced-motion. -->
+## Motion
+<!-- Micro transitions only, and what happens with prefers-reduced-motion. -->
 
-## Accessibilità
-<!-- Focus visibile, label, contrasto, navigazione da tastiera, responsive. -->
+## Accessibility
+<!-- Visible focus, labels, contrast, keyboard navigation, responsive. -->
 
-## Voce dell'interfaccia
-Rimando alle regole permanenti (00). Qui solo le label specifiche del progetto, già scritte.
+## Voice of the interface
+See the permanent rules (00). Here only the labels specific to the project, already written.

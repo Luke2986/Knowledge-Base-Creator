@@ -1,110 +1,119 @@
 # Knowledge Base Creator
 
-Una skill per Claude che trasforma un'idea di software nella knowledge base da dare a un builder AI prima di scrivere una riga di codice. Tu porti l'idea con i dettagli che hai già, la skill ti fa solo le domande che mancano, una per messaggio e con le opzioni già pronte, poi scrive otto file markdown coerenti tra loro e adattati allo strumento con cui costruisci.
+Leggi in italiano: [README.it.md](README.it.md)
 
-Funziona con Lovable, Replit e Claude Code, e gestisce anche strumenti diversi cercando dove tengono il contesto permanente.
+A skill for Claude that turns a software idea into the knowledge base to give an AI builder before writing a line of code. You bring the idea with the details you already have, the skill asks only the questions that are missing, one per message and with the options ready, then writes eight markdown files that agree with each other and are adapted to the tool you build with.
 
-## Perché serve
+It works with Lovable, Replit and Claude Code, and handles other tools too by finding out where they keep permanent context.
 
-I builder AI costruiscono bene quando hanno un contesto fisso da rileggere e sbagliano quando devono ricostruirlo a ogni prompt: aggiungono funzioni non richieste, creano backend che non servono, cambiano il modello dati a metà strada. Questa skill prepara quel contesto prima di aprire il builder, e divide la costruzione in prompt piccoli da verificare uno alla volta, così l'agente non prova a fare tutto insieme.
+## Why it helps
 
-## Cosa produce
+AI builders build well when they have a fixed context to reread, and go wrong when they have to rebuild it at every prompt: they add functions nobody asked for, create backends that are not needed, change the data model halfway through. This skill prepares that context before you open the builder, and splits the build into small prompts to check one at a time, so the agent does not try to do everything at once.
 
-| File | Quando | Contenuto |
+## What it produces
+
+| File | When | Content |
 |---|---|---|
-| `00-regole-permanenti.md` | sempre | Come l'agente lavora su ogni task: un passo alla volta, sicurezza, struttura del codice, documentazione, voce dei testi |
-| `01-master-plan.md` | sempre | Cosa, per chi, problema, principi, scope MVP, fuori scope, fatto quando, metriche, evoluzione |
-| `02-design-system.md` | sempre | Gerarchia visiva, token CSS, tipografia, breakpoint, componenti, stati, accessibilità |
-| `03-prompt-<strumento>.md` | sempre | Dove incollare ogni file nello strumento e la sequenza di prompt fino all'MVP, ognuno con le sue verifiche |
-| `04-contesto-ai-runtime.md` | solo se l'app usa l'AI | Il system della funzione lato server che chiama il modello: ruolo, contesto di dominio, stile, formato di output |
-| `05-decision-log.md` | sempre | Le decisioni già prese, con motivo, alternative e quando rivalutarle |
-| `06-tasks.md` | sempre | Task raggruppati per prompt, ognuno con la condizione che dice quando è fatto |
-| `07-architecture.md` | sempre | Stack, cartelle, modello dati, schema del database, contratti delle funzioni server, flussi |
+| `00-permanent-rules.md` | always | How the agent works on every task: one step at a time, security, code structure, documentation, voice of the copy |
+| `01-master-plan.md` | always | What, for whom, problem, principles, MVP scope, out of scope, done when, metrics, evolution |
+| `02-design-system.md` | always | Visual hierarchy, CSS tokens, typography, breakpoints, components, states, accessibility |
+| `03-prompts-<tool>.md` | always | Where to paste each file in the tool and the prompt sequence up to the MVP, each with its checks |
+| `04-runtime-ai-context.md` | only if the app uses AI | The system prompt of the server-side function that calls the model: role, domain context, style, output format |
+| `05-decision-log.md` | always | The decisions already made, with reason, alternatives and when to revisit them |
+| `06-tasks.md` | always | Tasks grouped by prompt, each with the condition that says when it is done |
+| `07-architecture.md` | always | Stack, folders, data model, database schema, server function contracts, flows |
 
-Su Claude Code, quando c'è materiale sufficiente, l'architettura si divide anche in `08-database.md` e `09-api.md`. La skill non crea mai file vuoti o riempiti di ipotesi.
+On Claude Code, when there is enough material, the architecture also splits into `08-database.md` and `09-api.md`. The skill never creates files that are empty or filled with guesses.
 
-## Come funziona
+## How it works
 
-1. Legge l'idea ed estrae quello che hai già deciso: strumento, database, AI, utenti, funzioni, riferimenti visivi. Quello che hai detto non te lo chiede più.
-2. Ti fa solo le domande che mancano, con opzioni specifiche per il tuo caso. Se scegli Replit, per il database vedi le opzioni di Replit; se scegli Lovable, quelle di Lovable.
-3. Ti chiede solo quello che puoi sapere tu, cioè problema, per chi, cosa resta fuori, quando è finito, metriche, e scrive in bozza il resto: architettura, modello dati, task, token del design system.
-4. Per il design ti chiede riferimenti concreti e nello stesso messaggio ti propone tre direzioni visive ricavate dall'idea.
-5. Segna con `[da verificare]` le frasi che ricava dal sapere generale invece che da quello che hai scritto tu, così sai dove guardare.
-6. Prima di consegnare controlla che i file non si contraddicano: stesso modello dati ovunque, un task per ogni voce dello scope, una voce nel decision log per ogni scelta.
+1. It reads the idea and extracts what you have already decided: tool, database, AI, users, functions, visual references. What you said it does not ask again.
+2. It asks only the missing questions, with options specific to your case. If you choose Replit, for the database you see Replit's options; if you choose Lovable, Lovable's.
+3. It asks you only what you alone can know, that is problem, for whom, what stays out, when it is done, metrics, and drafts the rest: architecture, data model, tasks, design system tokens.
+4. For the design it asks for concrete references and in the same message proposes three visual directions drawn from the idea.
+5. It marks with `[to verify]` the sentences it draws from general knowledge instead of from what you wrote, so you know where to look.
+6. Before delivering it checks that the files do not contradict each other: same data model everywhere, a task for every scope item, a decision log entry for every choice.
 
-## Strumenti e database supportati
+## Supported tools and databases
 
-| Strumento | Contesto permanente | Database |
+| Tool | Permanent context | Database |
 |---|---|---|
-| Lovable | workspace knowledge e project knowledge | Lovable Cloud, Supabase con account proprio, nessuno |
-| Replit | `replit.md` e cartella `docs/` | PostgreSQL interno, Supabase, nessuno |
-| Claude Code | `CLAUDE.md` con import da `docs/` | Supabase, SQLite, Neon o altro, nessuno |
-| Altro | lo cerca nella documentazione dello strumento o te lo chiede | Supabase, database interno, nessuno |
+| Lovable | workspace knowledge and project knowledge | Lovable Cloud, Supabase with your own account, none |
+| Replit | `replit.md` and `docs/` folder | built-in PostgreSQL, Supabase, none |
+| Claude Code | `CLAUDE.md` and `docs/` folder | Supabase, SQLite, Neon or other, none |
+| Other | looks it up in the tool's documentation or asks you | Supabase, built-in database, none |
 
-"Nessuno" significa dati salvati nel browser con localStorage, adatto a un MVP single user senza login.
+"None" means data saved in the browser with localStorage, suited to a single-user MVP with no login.
 
-## Installazione
+On Lovable and Replit the skill points the builder to the native integrations (login, storage, payments, connectors) instead of having them rebuilt by hand.
 
-Su Claude.ai carica il file `knowledge-base-creator.skill` dalla sezione Skills delle impostazioni.
+## Installation
 
-In Claude Code copia la cartella `knowledge-base-creator/` di questo repository in `~/.claude/skills/` per averla in tutti i progetti, oppure in `.claude/skills/` dentro un singolo repository:
+On Claude.ai upload the `knowledge-base-creator.skill` file from the Skills section of the settings.
+
+In Claude Code copy the `knowledge-base-creator/` folder of this repository to `~/.claude/skills/` to have it in all projects, or to `.claude/skills/` inside a single repository:
 
 ```bash
 git clone https://github.com/Luke2986/Knowledge-Base-Creator.git
 mkdir -p ~/.claude/skills && cp -R Knowledge-Base-Creator/knowledge-base-creator ~/.claude/skills/
 ```
 
-## Come si usa
+## How to use it
 
-Descrivi l'idea con i dettagli che hai, anche pochi. Per esempio:
+Describe the idea with the details you have, even a few. For example:
 
 ```text
-Voglio costruire su Lovable un'app per l'autovalutazione delle competenze
-da Product Manager: otto slider, una ruota radar e l'AI che suggerisce
-come usare l'AI sulle tre aree più forti. Niente login, salvo nel browser.
+I want to build on Lovable an app for self-assessing Product Manager
+skills: eight sliders, a radar wheel and AI that suggests how to use AI
+on the three strongest areas. No login, I save in the browser.
 ```
 
 ```text
-Prepara i file per un tool su Replit: l'albergatore incolla una recensione
-di Google o Booking e ottiene tre bozze di risposta nel tono della struttura.
+Prepare the files for a tool on Replit: the hotel owner pastes a Google
+or Booking review and gets three reply drafts in the property's tone.
 ```
 
-La skill si attiva anche senza nominarla, con richieste come "voglio costruire questa idea", "prepara i file per Lovable", "impostiamo il progetto" o "fammi il master plan".
+The skill also triggers without being named, with requests such as "I want to build this idea", "prepare the files for Lovable", "let's set up the project" or "write the master plan".
 
-## Struttura del repository
+## Repository structure
 
 ```text
 Knowledge-Base-Creator/
 ├─ README.md
-├─ knowledge-base-creator.skill      pacchetto da caricare su Claude.ai
-└─ knowledge-base-creator/           la skill, da copiare in Claude Code
+├─ README.it.md
+├─ knowledge-base-creator.skill      package to upload to Claude.ai
+└─ knowledge-base-creator/           the skill, to copy into Claude Code
    ├─ SKILL.md
    ├─ references/
    │  ├─ lovable.md
    │  ├─ replit.md
    │  ├─ claude-code.md
-   │  ├─ altro.md
-   │  └─ esempio-contesto-ai.md
+   │  ├─ other-tools.md
+   │  ├─ runtime-ai-context-example.md
+   │  ├─ voice-en.md
+   │  └─ voice-it.md
    └─ assets/
       └─ template/
-         ├─ 00-regole-permanenti.md
+         ├─ 00-permanent-rules.md
          ├─ 01-master-plan.md
          ├─ 02-design-system.md
-         ├─ 03-prompt-strumento.md
-         ├─ 04-contesto-ai-runtime.md
+         ├─ 03-prompts-tool.md
+         ├─ 04-runtime-ai-context.md
          ├─ 05-decision-log.md
          ├─ 06-tasks.md
          └─ 07-architecture.md
 ```
 
-## Voce e lingua
+## Voice and language
 
-La skill scrive in italiano, registro tu, con regole di voce fisse che finiscono anche nei testi dell'app e nelle risposte dell'AI a runtime: niente trattino lungo, niente emoji, niente costruzioni "non solo X, ma anche Y", e un elenco di parole bandite. Se preferisci altre regole, modificale in `knowledge-base-creator/SKILL.md` e in `knowledge-base-creator/assets/template/00-regole-permanenti.md`.
+The skill writes in the language you write in. File names and technical keys stay in English in every language.
 
-## Limiti
+Each language has its own fixed voice rules, which also end up in the app copy and in the answers of the AI at runtime: no em dash, no emoji, no "not only X but also Y" constructions, and a list of banned words. English and Italian are covered by `references/voice-en.md` and `references/voice-it.md`; for other languages the skill applies the English rules and translates the banned words. To change the rules or add a language, edit or add a `voice-<language>.md` file.
 
-La skill prepara il progetto, non scrive il codice e non serve per rimettere in ordine un'app già in sviluppo avanzato. Le informazioni sugli strumenti riflettono lo stato di Lovable, Replit e Claude Code a settembre 2026: le piattaforme cambiano spesso, quindi i file in `knowledge-base-creator/references/` vanno aggiornati quando cambia il modo in cui gestiscono contesto, database o segreti.
+## Limits
 
-## Autore
+The skill prepares the project, it does not write the code and it is not meant for tidying up an app already in advanced development. The information on the tools reflects Lovable, Replit and Claude Code as of September 2026, with native integrations and Claude Code's handling of `CLAUDE.md` rechecked in November 2026: the platforms change often, so the files in `knowledge-base-creator/references/` need updating when the way they handle context, database or secrets changes.
 
-Luca Versilia, product manager e digital strategist.
+## Author
+
+Luca Versilia, product manager and digital strategist.

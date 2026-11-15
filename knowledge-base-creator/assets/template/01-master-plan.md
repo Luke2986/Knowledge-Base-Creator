@@ -1,36 +1,36 @@
-<!-- TEMPLATE. Le sezioni marcate UTENTE vengono dalle risposte o dall'idea, mai inventate. Le altre le ricavi tu. Prosa asciutta, niente elenchi dove la prosa scorre. -->
+<!-- TEMPLATE. The sections marked USER come from the answers or the idea, never invented. The others you derive. Dry prose, no lists where prose flows. Write it in the output language. -->
 
-# Master plan: <nome progetto>
+# Master plan: <project name>
 
-## Cosa stiamo costruendo
-<!-- Due o tre frasi: cosa fa l'app, cosa fa l'utente dentro, qual è l'output. -->
+## What we are building
+<!-- Two or three sentences: what the app does, what the user does inside it, what the output is. -->
 
-## Per chi
-<!-- UTENTE. Chi la usa, quanto spesso, in che momento. Single user o multiutente all'avvio. -->
+## For whom
+<!-- USER. Who uses it, how often, at what moment. Single user or multi-user at launch. -->
 
-## Il problema
-<!-- UTENTE. Cosa succede oggi senza l'app e perché non basta. -->
+## The problem
+<!-- USER. What happens today without the app and why that is not enough. -->
 
-## Principi
-<!-- Da due a quattro principi numerati che orientano le scelte di prodotto, ognuno in una frase con il suo perché. Ricavati dall'idea: per esempio "ogni output è azionabile entro sette giorni", "l'AI propone, l'utente decide". Niente principi che valgono per qualsiasi app. -->
+## Principles
+<!-- Two to four numbered principles that guide product choices, each in one sentence with its reason. Drawn from the idea: for example "every output is actionable within seven days", "the AI proposes, the user decides". No principles that would fit any app. -->
 
-## Le funzioni (o le aree, le entità principali)
-<!-- L'elenco delle cose su cui l'app lavora, con chiave tecnica e descrizione. Le chiavi devono essere identiche a quelle del 07 e del 04. -->
+## The functions (or the areas, the main entities)
+<!-- The list of things the app works on, with technical key and description. The keys must be identical to those in 07 and 04. -->
 
-## Scope MVP
-<!-- Tutto quello che l'MVP contiene, in prosa o in elenco breve. Ogni elemento citato altrove (domande guida, testi fissi, liste) va scritto qui per esteso, non solo nominato. -->
+## MVP scope
+<!-- Everything the MVP contains, in prose or a short list. Every element mentioned elsewhere (guiding questions, fixed texts, lists) is written here in full, not just named. -->
 
-## Fuori scope per ora
-<!-- UTENTE. Cosa resta fuori e, dove serve, perché. -->
+## Out of scope for now
+<!-- USER. What stays out and, where needed, why. -->
 
-## Fatto quando
-<!-- UTENTE. Le condizioni osservabili per dire che l'MVP è finito, in frasi che si verificano nell'anteprima. -->
+## Done when
+<!-- USER. The observable conditions for saying the MVP is finished, in sentences that can be checked in the preview. -->
 
-## Metriche di successo
-<!-- UTENTE. Numeri, anche approssimativi: tempi, tassi di completamento, errori. -->
+## Success metrics
+<!-- USER. Numbers, even approximate: times, completion rates, errors. -->
 
-## Evoluzione, oltre l'MVP
-<!-- Le fasi successive in ordine, con cosa le rende necessarie. Nessun prompt per queste: si scrivono quando arrivano. -->
+## Evolution, beyond the MVP
+<!-- The next phases in order, with what makes them necessary. No prompts for these: they are written when they arrive. -->
 
-## Voce e lingua
-Rimando alle regole permanenti (00), sezione voce dei testi dell'app.
+## Voice and language
+See the permanent rules (00), section on the voice of the app copy.

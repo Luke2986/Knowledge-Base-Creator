@@ -1,31 +1,31 @@
-<!-- TEMPLATE. Precompilato con tutte le decisioni già prese durante la creazione: strumento, database, modello AI, stack, librerie scelte (per esempio quella dei grafici), login sì o no, esclusioni importanti dallo scope. Data di oggi su tutte. -->
+<!-- TEMPLATE. Pre-filled with all the decisions already made during creation: tool, database, AI model, stack, chosen libraries (for example the chart library), login yes or no, important exclusions from the scope. Today's date on all of them. Write it in the output language. -->
 
 # Decision log
 
-Registra le decisioni di prodotto, UX e architettura.
+Records the product, UX and architecture decisions.
 
-## Regole
-- Una decisione per blocco.
-- Sempre il motivo e le alternative considerate.
-- Sempre quando rivalutarla.
-- Le decisioni storiche non si modificano: se cambi idea, aggiungi una nuova voce che rimanda alla vecchia.
+## Rules
+- One decision per block.
+- Always the reason and the alternatives considered.
+- Always when to revisit it.
+- Past decisions are not edited: if you change your mind, add a new entry that points to the old one.
 
 ---
 
-## <data>: <titolo breve della decisione>
+## <date>: <short title of the decision>
 
-Decisione: <cosa>
-Motivo: <perché, legato al progetto>
-Alternative considerate: <quali e perché scartate>
-Impatto: <cosa comporta su sviluppo, costi, file>
-Rivalutare quando: <condizione osservabile>
+Decision: <what>
+Reason: <why, tied to the project>
+Alternatives considered: <which, and why discarded>
+Impact: <what it entails for development, costs, files>
+Revisit when: <observable condition>
 
 ---
 
 ## Template
 
-Decisione:
-Motivo:
-Alternative considerate:
-Impatto:
-Rivalutare quando:
+Decision:
+Reason:
+Alternatives considered:
+Impact:
+Revisit when:

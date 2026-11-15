@@ -1,48 +1,48 @@
-<!-- TEMPLATE. Stack e posizione della logica server dipendono da references/<strumento>.md. Le chiavi e i tipi qui sono la fonte di verità per 01, 03, 04 e 06. Su Claude Code, se database e API hanno materiale vero, sposta quelle sezioni in 08-database.md e 09-api.md. -->
+<!-- TEMPLATE. Stack and location of the server logic depend on references/<tool>.md. The keys and types here are the source of truth for 01, 03, 04 and 06. On Claude Code, if database and API have real material, move those sections to 08-database.md and 09-api.md. Write it in the output language; keys, types and names stay in English. -->
 
-# Architettura: <nome progetto>
+# Architecture: <project name>
 
-## Principi
-1. Interfaccia separata dalla logica.
-2. AI separata dall'interfaccia.
-3. Persistenza separata dai componenti.
-4. Nessuna dipendenza inutile.
-5. Ogni modulo si modifica senza rompere gli altri.
+## Principles
+1. Interface separate from logic.
+2. AI separate from the interface.
+3. Persistence separate from components.
+4. No needless dependency.
+5. Each module can be changed without breaking the others.
 
 ## Stack
-<!-- Imposto o scelto, con il rimando alla voce del 05. -->
+<!-- Imposed or chosen, with a pointer to the entry in 05. -->
 
-## Dove sta la logica lato server
-<!-- Edge function su Lovable Cloud o Supabase, route del server su Replit o Claude Code, nessuna se l'app non ha backend. Dove vivono i segreti. -->
+## Where the server-side logic lives
+<!-- Edge function on Lovable Cloud or Supabase, server route on Replit or Claude Code, none if the app has no backend. Where secrets live. -->
 
-## Struttura cartelle
+## Folder structure
 ```text
-<albero>
+<tree>
 ```
 
-## Modello dati
+## Data model
 ```ts
-// Tipi. Una sola definizione per ogni entità, riusata ovunque.
-// Se un campo è una lista di testi, è string[] ovunque: nel tipo, nel contratto, nell'output del 04.
+// Types. One definition per entity, reused everywhere.
+// If a field is a list of texts, it is string[] everywhere: in the type, in the contract, in the output of 04.
 ```
 
 ## Database
-<!-- Solo se c'è: tabelle, colonne, relazioni, policy RLS per tabella. Se i dati stanno nel browser: chiave di localStorage, formato salvato, cosa succede se lo storage non è disponibile. -->
+<!-- Only if there is one: tables, columns, relations, RLS policies per table. If data lives in the browser: localStorage key, saved format, what happens if storage is unavailable. -->
 
-## Contratti delle funzioni lato server
-<!-- Per ogni funzione: nome, richiesta, risposta, errori. La risposta della funzione AI è identica al formato di output del 04. -->
+## Server-side function contracts
+<!-- For each function: name, request, response, errors. The response of the AI function is identical to the output format of 04. -->
 
-## Flussi utente
-<!-- Per ogni flusso dell'MVP, i passaggi numerati. -->
+## User flows
+<!-- For each flow of the MVP, the numbered steps. -->
 
-## Responsabilità dei moduli
-<!-- components: solo rendering. services: server, persistenza, AI, export. hooks: coordinano. -->
+## Module responsibilities
+<!-- components: rendering only. services: server, persistence, AI, export. hooks: coordinate. -->
 
-## Regole di evoluzione
-<!-- Cosa cambia e cosa resta fermo quando arrivano auth, database, multiutenza. -->
+## Evolution rules
+<!-- What changes and what stays fixed when auth, database, multiple users arrive. -->
 
-## Checklist architettura
-- [ ] Componenti piccoli, nessun file oltre 300 righe
-- [ ] Nessuna chiave nel client
-- [ ] Interfaccia indipendente da persistenza e AI
-- [ ] Tipi definiti una volta sola
+## Architecture checklist
+- [ ] Small components, no file over 300 lines
+- [ ] No key in the client
+- [ ] Interface independent of persistence and AI
+- [ ] Types defined only once
