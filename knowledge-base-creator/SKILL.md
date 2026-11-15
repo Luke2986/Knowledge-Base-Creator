@@ -1,112 +1,111 @@
 ---
 name: knowledge-base-creator
-description: Costruisce la knowledge base di partenza per sviluppare un software con un builder AI (Lovable, Replit, Claude Code o altro) e la consegna in file markdown, cioè regole permanenti, master plan, design system, prompt da dare al builder uno alla volta, contesto per l'AI che gira dentro l'app, decision log, task e architettura. Parte dall'idea e dai dettagli che l'utente fornisce, chiede solo quello che manca con domande specifiche a opzioni, una per messaggio, e adatta prompt, stack e database allo strumento scelto. Usala ogni volta che l'utente ha un'idea di app, tool, SaaS, MVP o prototipo da costruire e vuole preparare il progetto prima di aprire il builder, anche se non nomina la knowledge base, per esempio quando dice "voglio costruire questa idea", "prepara i file per Lovable", "impostiamo il progetto", "fammi il master plan", "prompt per Replit", "CLAUDE.md per il progetto", "da dove parto per sviluppare X". Non serve per correggere un'app già in sviluppo avanzato né per scrivere direttamente il codice.
+description: Builds the starting knowledge base for developing software with an AI builder (Lovable, Replit, Claude Code or another tool) and delivers it as markdown files, namely permanent rules, master plan, design system, step-by-step prompts for the builder, context for the AI that runs inside the app, decision log, tasks and architecture. Starts from the idea and the details the user gives, asks only for what is missing with specific multiple-choice questions, one per message, adapts prompts, stack and database to the chosen tool, and writes in the user's language. Use it whenever the user has an idea for an app, tool, SaaS, MVP or prototype and wants to prepare the project before opening the builder, even without naming a knowledge base, for example "I want to build this idea", "prepare the files for Lovable", "write the master plan", "CLAUDE.md for the project", "voglio costruire questa idea", "prepara i file per Lovable". Not for fixing an app already in advanced development or for writing the code directly.
 ---
 
 # Knowledge Base Creator
 
-I builder AI costruiscono bene quando hanno un contesto fisso da rileggere e sbagliano quando devono ricostruirlo a ogni prompt. Questa skill prepara quel contesto: una serie di file markdown che descrivono cosa costruire, come deve apparire, con quale architettura, in che ordine, e con quali regole. L'utente porta l'idea, la skill chiede solo quello che solo lui può sapere, scrive il resto in bozza, controlla che i file siano coerenti tra loro e li consegna.
+AI builders build well when they have a fixed context to reread, and go wrong when they have to rebuild it at every prompt. This skill prepares that context: a set of markdown files that describe what to build, how it should look, with which architecture, in what order, and under which rules. The user brings the idea, the skill asks only for what the user alone can know, drafts the rest, checks that the files agree with each other and delivers them.
 
-## I file che produci
+## The files you produce
 
-| File | Quando | Cosa contiene |
+| File | When | What it contains |
 |---|---|---|
-| `00-regole-permanenti.md` | sempre | Come l'agente deve lavorare su qualsiasi task: passo per passo, sicurezza, struttura del codice, documentazione, voce |
-| `01-master-plan.md` | sempre | Cosa, per chi, problema, principi, scope MVP, fuori scope, fatto quando, metriche, evoluzione |
-| `02-design-system.md` | sempre | Carattere, gerarchia visiva, token, tipografia, layout e breakpoint, componenti, stati, accessibilità |
-| `03-prompt-<strumento>.md` | sempre | Indice di posa dei file nello strumento e sequenza di prompt step by step fino all'MVP |
-| `04-contesto-ai-runtime.md` | solo se l'app usa l'AI a runtime | Il system della funzione lato server che chiama il modello: ruolo, contesto di dominio, stile, vincoli di output |
-| `05-decision-log.md` | sempre | Le decisioni già prese, con motivo, alternative e quando rivalutarle |
-| `06-tasks.md` | sempre | Task raggruppati per prompt, ognuno con il suo "fatto quando", più QA |
-| `07-architecture.md` | sempre | Stack, cartelle, modello dati, schema DB se c'è, contratti delle funzioni server, flussi, responsabilità dei moduli |
+| `00-permanent-rules.md` | always | How the agent works on any task: step by step, security, code structure, documentation, voice |
+| `01-master-plan.md` | always | What, for whom, problem, principles, MVP scope, out of scope, done when, metrics, evolution |
+| `02-design-system.md` | always | Character, visual hierarchy, tokens, typography, layout and breakpoints, components, states, accessibility |
+| `03-prompts-<tool>.md` | always | Where each file goes in the tool and the step-by-step prompt sequence up to the MVP |
+| `04-runtime-ai-context.md` | only if the app uses AI at runtime | The system prompt of the server-side function that calls the model: role, domain context, style, output constraints |
+| `05-decision-log.md` | always | The decisions already made, with reason, alternatives and when to revisit them |
+| `06-tasks.md` | always | Tasks grouped by prompt, each with its own "done when", plus QA |
+| `07-architecture.md` | always | Stack, folders, data model, DB schema if there is one, server function contracts, flows, module responsibilities |
 
-Solo su Claude Code, e solo se c'è materiale vero per riempirli, il `07` si divide in `07-architecture.md`, `08-database.md` e `09-api.md`. Non creare mai file vuoti o riempiti di ipotesi, come deployment o troubleshooting all'avvio: l'agente li prende per veri. Il troubleshooting nasce quando compare il primo problema.
+Only on Claude Code, and only if there is real material to fill them, `07` splits into `07-architecture.md`, `08-database.md` and `09-api.md`. Never create files that are empty or filled with guesses, such as deployment or troubleshooting at the start: the agent takes them as true. Troubleshooting is born when the first problem appears.
 
-I template di ogni file sono in `assets/template/`. Leggili prima di scrivere: ogni template spiega cosa va in ogni sezione e da dove prenderlo.
+The template for each file is in `assets/template/`. Read them before writing: each template explains what goes in each section and where to take it from.
 
-## Flusso
+## Language
 
-### 1. Leggi l'idea
+Write the knowledge base and your messages in the language the user writes in. The file names in the table above and the technical keys (data model fields, table names, environment variables) stay in English in every language; headings and prose follow the user's language. If the app's interface is in a different language from the conversation, ask nothing: use the language the user states for the app in the app copy and in the output constraints of `04`, and the conversation language everywhere else.
 
-L'utente ti dà un'idea con alcuni dettagli, a volte due righe, a volte un documento. Prima di fare qualsiasi domanda, estrai tutto quello che c'è già su queste voci:
+Voice rules depend on the language. Read `references/voice-<language>.md` (`voice-en.md`, `voice-it.md`) for the output language. If there is no file for that language, apply `voice-en.md` and translate its banned-word list with the closest equivalents.
 
-strumento, database, AI dentro l'app e modello, utenti, problema, funzioni principali, cosa resta fuori dall'MVP, quando è finito, metriche di successo, riferimenti visivi, lingua e registro dell'app.
+## Flow
 
-Quello che l'utente ha già detto non lo chiedi più, neanche per conferma. Se ha detto una parte di una cosa, chiedi solo la parte che manca: se scrive "con Supabase" senza lo strumento, chiedi lo strumento e salti il database.
+### 1. Read the idea
 
-### 2. Fai solo le domande che servono, una per messaggio
+The user gives you an idea with some details, sometimes two lines, sometimes a document. Before asking anything, extract everything already there on these points:
 
-Le domande sono sempre specifiche. Non chiedere mai "servono dati salvati?" o "hai preferenze sul design?": dai l'elenco delle opzioni concrete e l'utente sceglie o scrive la sua. Ogni elenco chiude con "Altro, scrivi quale". Se hai a disposizione lo strumento a bottoni (per esempio `ask_user_input_v0` su Claude.ai o l'equivalente in Claude Code), usalo per le domande a opzioni; altrimenti usa una lista numerata.
+tool, database, AI inside the app and model, users, problem, main functions, what stays out of the MVP, when it is done, success metrics, visual references, language and register of the app.
 
-Ordine delle domande, da saltare quando la risposta c'è già:
+What the user has already said you do not ask again, not even to confirm. If they said part of something, ask only for the missing part: if they write "with Supabase" without the tool, ask for the tool and skip the database.
 
-**Strumento.** "Con quale strumento costruisci?" 1. Lovable 2. Replit 3. Claude Code 4. Altro, scrivi quale.
+### 2. Ask only the questions you need, one per message
 
-**Database**, con le opzioni valide per lo strumento scelto:
-- Lovable: 1. Lovable Cloud, il database interno 2. Supabase con un account tuo 3. Nessun database, i dati restano nel browser dell'utente 4. Altro, scrivi quale
-- Replit: 1. Il PostgreSQL interno di Replit 2. Supabase 3. Nessun database, i dati restano nel browser dell'utente 4. Altro, scrivi quale
-- Claude Code: 1. Supabase 2. Nessun database, i dati restano nel browser dell'utente 3. Altro, scrivi quale, per esempio SQLite o Neon
-- Altro strumento: 1. Supabase 2. Il database interno dello strumento, se ne ha uno 3. Nessun database 4. Altro, scrivi quale
+Questions are always specific. Never ask "do you need saved data?" or "any design preferences?": give the list of concrete options and the user picks one or writes their own. Every list ends with "Other, tell me which". If you have a button-based question tool available (for example `ask_user_input_v0` on Claude.ai or the equivalent in Claude Code), use it for multiple-choice questions; otherwise use a numbered list.
 
-**AI dentro l'app**, solo se l'idea non lo chiarisce: 1. Nessuna AI dentro l'app 2. Gateway AI di Lovable (solo se lo strumento è Lovable) 3. Claude con chiave Anthropic 4. OpenAI 5. Altro, scrivi quale. Con "nessuna" non produci il `04`.
+Order of the questions, to skip when the answer is already there:
 
-**Stack**, solo su Replit, Claude Code o altro strumento, dove non è imposto. Non chiederlo in astratto: proponi uno stack motivato in una riga preso dal file di riferimento dello strumento e dai come opzioni 1. Va bene 2. Preferisco un altro stack, scrivi quale.
+**Tool.** "Which tool are you building with?" 1. Lovable 2. Replit 3. Claude Code 4. Other, tell me which.
 
-**Le domande che solo l'utente può rispondere**, una per messaggio, solo quelle che mancano: il problema, per chi, cosa resta fuori dall'MVP, quando è finito, le metriche di successo. Queste sono aperte, ma restano specifiche perché partono dall'idea. Per un'app di autovalutazione delle competenze, male: "Qual è il problema che risolvi?"; bene: "Oggi il tuo utente fa l'autovalutazione e poi? Cosa succede dopo che ha visto i voti, e perché non gli basta?". Per il fuori scope e le metriche puoi proporre due o tre candidati ricavati dall'idea come opzioni, sempre con "Altro".
+**Database**, with the options valid for the chosen tool:
+- Lovable: 1. Lovable Cloud, the built-in backend 2. Supabase with your own account 3. No database, data stays in the user's browser 4. Other, tell me which
+- Replit: 1. Replit's built-in PostgreSQL 2. Supabase 3. No database, data stays in the user's browser 4. Other, tell me which
+- Claude Code: 1. Supabase 2. No database, data stays in the user's browser 3. Other, tell me which, for example SQLite or Neon
+- Other tool: 1. Supabase 2. The tool's built-in database, if it has one 3. No database 4. Other, tell me which
 
-**Design**, in un unico messaggio: chiedi riferimenti concreti (un sito, i colori del brand, un logo, un design system già pronto) e nello stesso messaggio proponi tre direzioni visive ricavate dall'idea, cioè da chi userà l'app e in che contesto. Ogni direzione sta in una riga con palette, coppia di font e tono. Se l'utente dà sia un riferimento sia una direzione, il riferimento vince sui punti in cui è preciso e la direzione copre il resto.
+**AI inside the app**, only if the idea does not make it clear: 1. No AI inside the app 2. Lovable AI gateway (only if the tool is Lovable) 3. Claude with an Anthropic key 4. OpenAI 5. Other, tell me which. With "none" you do not produce `04`.
 
-Non chiedere altro. Tutto il resto lo scrivi tu in bozza al passo 3.
+**Stack**, only on Replit, Claude Code or another tool, where it is not imposed. Do not ask in the abstract: propose a stack with a one-line reason taken from the tool's reference file and give as options 1. Fine 2. I prefer another stack, tell me which.
 
-### 3. Scrivi i file in bozza
+**The questions only the user can answer**, one per message, only the missing ones: the problem, for whom, what stays out of the MVP, when it is done, the success metrics. These are open, but stay specific because they start from the idea. For a skills self-assessment app, bad: "What problem are you solving?"; good: "Today your user does the self-assessment and then what? What happens after they see the scores, and why is that not enough?". For out of scope and metrics you can offer two or three candidates drawn from the idea as options, always with "Other".
 
-Leggi `references/<strumento>.md` (lovable, replit, claude-code, altro) e i template in `assets/template/`, poi scrivi i file.
+**Design**, in a single message: ask for concrete references (a site, brand colours, a logo, an existing design system) and in the same message propose three visual directions drawn from the idea, that is from who will use the app and in what context. Each direction fits in one line with palette, font pair and tone. If the user gives both a reference and a direction, the reference wins where it is precise and the direction covers the rest.
 
-Cosa viene da dove:
-- dalle risposte dell'utente e dall'idea: problema, per chi, scope, fuori scope, fatto quando, metriche, riferimenti visivi, scelte di strumento, database e modello AI;
-- ricavato da te: principi, token e componenti del design system, architettura, modello dati, schema DB, task, sequenza di prompt, contesto di dominio del `04`;
-- fisso: le regole di voce e la struttura delle regole permanenti.
+Ask nothing else. Everything else you draft yourself in step 3.
 
-Per il contesto di dominio del `04` scrivi una prima versione partendo dall'idea. Il rischio di questa bozza è che si riempia di frasi plausibili che valgono per qualsiasi app dello stesso tipo, cioè quello che il contesto di dominio serve a evitare. Per questo segna ogni frase che ricavi dal tuo sapere generale e non da quello che ha scritto l'utente con `[da verificare]` in coda. L'utente così sa dove guardare. L'esempio di contesto ben fatto è in `references/esempio-contesto-ai.md`.
+### 3. Draft the files
 
-La stessa marcatura vale in tutti gli altri file per i contenuti che l'utente ha nominato senza scriverli. Se l'idea dice "tre domande guida" e non le elenca, le scrivi tu in bozza, ognuna con `[da verificare]`, invece di lasciare un rimando a qualcosa che non esiste.
+Read `references/<tool>.md` (`lovable.md`, `replit.md`, `claude-code.md`, `other-tools.md`), the voice file for the output language and the templates in `assets/template/`, then write the files.
 
-I prompt del `03` seguono la regola: un prompt corrisponde a un blocco che l'utente può verificare nell'anteprima in pochi minuti. L'ordine è piano, interfaccia con dati finti, persistenza, AI a runtime, funzioni secondarie una per prompt. Ogni prompt dice cosa costruire, cosa non toccare, cosa non creare ancora, e chiude con le verifiche da fare prima del prompt successivo. I prompt si fermano all'MVP; le evoluzioni restano nel master plan.
+What comes from where:
+- from the user's answers and the idea: problem, for whom, scope, out of scope, done when, metrics, visual references, choice of tool, database and AI model;
+- derived by you: principles, design system tokens and components, architecture, data model, DB schema, tasks, prompt sequence, domain context of `04`;
+- fixed: the voice rules and the structure of the permanent rules.
 
-### 4. Controllo incrociato prima di consegnare
+For the domain context of `04` write a first version starting from the idea. The risk of this draft is that it fills up with plausible sentences that hold for any app of the same kind, which is what the domain context exists to avoid. So mark every sentence you draw from your general knowledge, and not from what the user wrote, with the verify marker at the end: `[to verify]` in English, `[da verificare]` in Italian, the translated equivalent in other languages, always in square brackets and always the same within a project. The user then knows where to look. The example of a well-made context is in `references/runtime-ai-context-example.md`.
 
-I file vengono scritti in momenti diversi e si contraddicono facilmente. Prima di consegnare verifica, e correggi dove non torna:
+The same marker applies in all other files to content the user named without writing it. If the idea says "three guiding questions" and does not list them, you draft them, each with the marker, instead of leaving a pointer to something that does not exist.
 
-- il modello dati è identico nel `07`, nel contratto delle funzioni server e nel formato di output del `04`: stessi nomi di chiave, stessi tipi (per esempio non un oggetto `{text}` da una parte e una stringa dall'altra);
-- ogni voce dello scope MVP del `01` ha almeno un task nel `06` e compare in almeno un prompt del `03`;
-- ogni stato descritto nel `02` (vuoto, caricamento, errore, storage assente) ha un task;
-- ogni scelta fatta in qualsiasi file (strumento, database, modello AI, stack, libreria per grafici, niente login) ha una voce nel `05`;
-- ogni elemento citato da un file esiste davvero da qualche parte: se il prompt dice "le tre domande del master plan", il master plan le contiene;
-- nessun file contiene il trattino lungo o le parole bandite.
+The prompts in `03` follow one rule: a prompt corresponds to a block the user can check in the preview in a few minutes. The order is plan, interface with fake data, persistence, runtime AI, secondary functions one per prompt. Each prompt says what to build, what not to touch, what not to create yet, and closes with the checks to run before the next prompt. Prompts stop at the MVP; later phases stay in the master plan.
 
-### 5. Consegna
+### 4. Cross-check before delivering
 
-Scrivi i file in una cartella con il nome del progetto. Su Claude.ai la cartella è `/mnt/user-data/outputs/<nome-progetto>/` e la presenti con `present_files`; in Claude Code scrivi in `docs/` nella radice del repository e il `CLAUDE.md` nella radice. Nel messaggio di consegna scrivi in due o tre frasi da quale file partire e quali parti sono segnate `[da verificare]`. Niente riassunto dei file: l'indice di posa nel `03` fa già quel lavoro.
+The files are written at different moments and contradict each other easily. Before delivering, check and fix what does not match:
 
-## Regole di voce, fisse
+- the data model is identical in `07`, in the server function contract and in the output format of `04`: same key names, same types (for example not a `{text}` object on one side and a string on the other);
+- every item in the MVP scope of `01` has at least one task in `06` and appears in at least one prompt of `03`;
+- every state described in `02` (empty, loading, error, storage unavailable) has a task;
+- every choice made in any file (tool, database, AI model, stack, chart library, no login) has an entry in `05`;
+- every element one file mentions really exists somewhere: if the prompt says "the three questions in the master plan", the master plan contains them;
+- no file breaks the voice rules of the output language: no em dash, none of the banned words.
 
-Valgono in due posti: nei file che scrivi e nei messaggi all'utente, e dentro il progetto, perché le copi nelle regole permanenti (`00`) e nei vincoli di output del `04`, così finiscono nei testi dell'app e nelle risposte dell'AI a runtime.
+### 5. Deliver
 
-- Italiano, registro tu, asciutto. Periodi distesi collegati da virgole, due punti e punto e virgola, non una fila di frasi brevissime staccate.
-- Forma attiva. Titoli in sentence case, verbi al presente.
-- Mai il trattino lungo. Niente emoji, niente hashtag, niente asterischi decorativi.
-- Parole bandite: sfida, leva, panorama, ecosistema, robusto, cruciale, fondamentale.
-- Niente costruzioni "non solo X, ma anche Y", niente triadi automatiche, niente superlativi e aggettivi superflui, niente metafore e frasi fatte.
-- Non aprire le frasi con "E".
-- Le label dell'interfaccia dicono cosa succede: "Salva valutazione di oggi", non "Salva". Gli errori spiegano il motivo e cosa fare, senza scuse.
+Write the files in a folder named after the project. On Claude.ai the folder is `/mnt/user-data/outputs/<project-name>/` and you present it with `present_files`; in Claude Code write to `docs/` in the repository root and `CLAUDE.md` in the root. In the delivery message say in two or three sentences which file to start from and which parts carry the verify marker. No summary of the files: the placement index in `03` already does that job.
 
-Se l'app è in un'altra lingua, le regole di registro e di stile valgono lo stesso e l'elenco delle parole bandite si traduce con gli equivalenti più vicini.
+## Voice rules
 
-## File di riferimento
+The voice rules live in `references/voice-<language>.md`. They apply in two places: in the files you write and in your messages to the user, and inside the project, because you copy them into the permanent rules (`00`) and into the output constraints of `04`, so they end up in the app copy and in the answers of the AI at runtime.
 
-- `references/lovable.md`: dove va ogni file in Lovable, Lovable Cloud contro Supabase esterno, gateway AI, come scrivere i prompt.
-- `references/replit.md`: `replit.md`, database interno, Secrets, stack da proporre, prompt per l'Agent.
-- `references/claude-code.md`: `CLAUDE.md` con import dei file in `docs/`, plan mode, stack da proporre, task con verifica e commit.
-- `references/altro.md`: come trattare uno strumento non coperto.
-- `references/esempio-contesto-ai.md`: un `04` ben fatto, da usare come calibrazione e non da copiare.
-- `assets/template/`: la struttura di ognuno degli otto file.
+If the app is in another language than the knowledge base, the rules of register and style hold all the same and the banned-word list is the one for the app's language.
+
+## Reference files
+
+- `references/lovable.md`: where each file goes in Lovable, Lovable Cloud versus external Supabase, native integrations, AI gateway, how to write the prompts.
+- `references/replit.md`: `replit.md`, built-in database, native integrations, Secrets, stack to propose, prompts for the Agent.
+- `references/claude-code.md`: `CLAUDE.md` and the files in `docs/`, plan mode, stack to propose, tasks with checks and commits.
+- `references/other-tools.md`: how to handle a tool that is not covered.
+- `references/runtime-ai-context-example.md`: a well-made `04`, to use as calibration and not to copy.
+- `references/voice-en.md`, `references/voice-it.md`: voice rules and banned words for each output language.
+- `assets/template/`: the structure of each of the eight files.

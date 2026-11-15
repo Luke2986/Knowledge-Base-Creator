@@ -1,19 +1,19 @@
-<!-- TEMPLATE. Raggruppa i task per prompt del 03, nello stesso ordine. Ogni task ha il suo "fatto quando" osservabile. Ogni voce di scope del 01 e ogni stato del 02 compare qui. -->
+<!-- TEMPLATE. Group the tasks by prompt of 03, in the same order. Each task has its own observable "done when". Every scope item of 01 and every state of 02 appears here. Write it in the output language. -->
 
 # Tasks
 
-## Prompt 1: <nome>
-- [ ] <task>. Fatto quando: <condizione verificabile nell'anteprima>
+## Prompt 1: <name>
+- [ ] <task>. Done when: <condition that can be checked in the preview>
 
-## Prompt 2: <nome>
-- [ ] <task>. Fatto quando: <condizione>
+## Prompt 2: <name>
+- [ ] <task>. Done when: <condition>
 
-## QA prima di chiudere l'MVP
-- [ ] Mobile: <cosa verificare, a quale larghezza>. Fatto quando: <condizione>
-- [ ] Accessibilità: focus visibile, label, contrasto. Fatto quando: <condizione>
-- [ ] Persistenza: <salva, ricarica, elimina>. Fatto quando: <condizione>
-- [ ] AI, se c'è: risposta valida, errore gestito, risposta non valida del modello gestita. Fatto quando: <condizione>
-- [ ] Nessun segreto nel client. Fatto quando: la ricerca della chiave nel bundle del browser non trova nulla.
+## QA before closing the MVP
+- [ ] Mobile: <what to check, at which width>. Done when: <condition>
+- [ ] Accessibility: visible focus, labels, contrast. Done when: <condition>
+- [ ] Persistence: <save, reload, delete>. Done when: <condition>
+- [ ] AI, if there is one: valid response, error handled, invalid response from the model handled. Done when: <condition>
+- [ ] No secret in the client. Done when: searching for the key in the browser bundle finds nothing.
 
-## Dopo l'MVP
-- [ ] <evoluzioni dal master plan, senza "fatto quando" finché non arrivano>
+## After the MVP
+- [ ] <later phases from the master plan, with no "done when" until they arrive>
