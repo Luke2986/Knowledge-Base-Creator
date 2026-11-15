@@ -30,5 +30,4 @@ These rules apply to every task in this project. If a request contradicts them, 
 - When you change structure, data model or contracts, update 07 in the same task.
 
 ## Voice of the app copy
-<!-- Copy here the rules from references/voice-<language>.md for the language of the app, banned-word list included, and keep the line below. -->
-- No exclamation marks of enthusiasm.
+<!-- Copy here the bullet list from references/voice-<language>.md for the language of the app, banned-word list included. Leave out its opening paragraph and the verify-marker line. -->

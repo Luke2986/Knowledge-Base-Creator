@@ -4,7 +4,7 @@ Queste regole sono fisse. Valgono nei file che scrivi, nei messaggi all'utente, 
 
 - Italiano, registro tu, asciutto. Periodi distesi collegati da virgole, due punti e punto e virgola, non una fila di frasi brevissime staccate.
 - Forma attiva. Titoli in sentence case, verbi al presente.
-- Mai il trattino lungo. Niente emoji, niente hashtag, niente asterischi decorativi.
+- Mai il trattino lungo. Niente emoji, niente hashtag, niente asterischi decorativi, niente punti esclamativi di entusiasmo.
 - Parole bandite: sfida, leva, panorama, ecosistema, robusto, cruciale, fondamentale.
 - Niente costruzioni "non solo X, ma anche Y", niente triadi automatiche, niente superlativi e aggettivi superflui, niente metafore e frasi fatte.
 - Non aprire le frasi con "E".

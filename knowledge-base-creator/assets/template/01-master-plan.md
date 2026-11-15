@@ -12,7 +12,7 @@
 <!-- USER. What happens today without the app and why that is not enough. -->
 
 ## Principles
-<!-- Two to four numbered principles that guide product choices, each in one sentence with its reason. Drawn from the idea: for example "every output is actionable within seven days", "the AI proposes, the user decides". No principles that hold for any app. -->
+<!-- Two to four numbered principles that guide product choices, each in one sentence with its reason. Drawn from the idea: for example "every output is actionable within seven days", "the AI proposes, the user decides". No principles that would fit any app. -->
 
 ## The functions (or the areas, the main entities)
 <!-- The list of things the app works on, with technical key and description. The keys must be identical to those in 07 and 04. -->

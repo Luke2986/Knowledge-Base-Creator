@@ -7,12 +7,12 @@ Imposed by the tool: React and TypeScript with Tailwind and shadcn/ui components
 Lovable has two levels of permanent context: the workspace knowledge, single and shared by all projects, and the project knowledge of the single project. Lovable applies short, concrete instructions better, so the knowledge has to be condensed: the full files stay the source, the knowledge gets the essential version.
 
 - `00-permanent-rules.md` goes in the workspace knowledge. It is pasted once: if the user already has it from a previous project, they update it instead of duplicating it.
-- `01-master-plan.md` and `02-design-system.md` go in the project knowledge, condensed: purpose, users, scope, out of scope, tokens and component rules. Drop the discursive paragraphs.
+- `01-master-plan.md` and `02-design-system.md` go in the project knowledge, condensed: purpose, users, scope, out of scope, tokens and component rules. Drop the explanatory paragraphs.
 - `07-architecture.md` goes in the project knowledge for the parts the agent must respect: folder structure, data model, table names, function contracts.
 - `04-runtime-ai-context.md` never goes in the knowledge. It is the system prompt of the edge function that calls the model, it guides the AI that answers inside the app at runtime and not the agent that builds. In the prompt that integrates the AI, ask to paste it in full into the function.
 - `03`, `05` and `06` stay with the user: `03` to give the prompts, `05` and `06` to keep track. If the project is synced to GitHub, it is worth saving them in the repository too, in `docs/`.
 
-The placement index in `03` must say these things operationally: "Open the workspace settings, Knowledge section, paste the content of 00".
+The placement index in `03` must give these as steps to follow: "Open the workspace settings, Knowledge section, paste the content of 00".
 
 ## Database
 - Lovable Cloud: the default backend of new projects, built on the Supabase stack. Tables, auth, storage, edge functions and secrets are managed from the editor, with no separate Supabase account. Choose this route when the user has no reason to own the backend.

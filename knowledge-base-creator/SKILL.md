@@ -20,15 +20,15 @@ AI builders build well when they have a fixed context to reread, and go wrong wh
 | `06-tasks.md` | always | Tasks grouped by prompt, each with its own "done when", plus QA |
 | `07-architecture.md` | always | Stack, folders, data model, DB schema if there is one, server function contracts, flows, module responsibilities |
 
-Only on Claude Code, and only if there is real material to fill them, `07` splits into `07-architecture.md`, `08-database.md` and `09-api.md`. Never create files that are empty or filled with guesses, such as deployment or troubleshooting at the start: the agent takes them as true. Troubleshooting is born when the first problem appears.
+Only on Claude Code, and only if there is real material to fill them, `07` splits into `07-architecture.md`, `08-database.md` and `09-api.md`. Never create files that are empty or filled with guesses, such as deployment or troubleshooting at the start: the agent takes them as true. Write the troubleshooting file when the first problem appears.
 
-The template for each file is in `assets/template/`. Read them before writing: each template explains what goes in each section and where to take it from.
+The template for each file is in `assets/template/`. Read them before writing: each template explains what goes in each section and where it comes from.
 
 ## Language
 
-Write the knowledge base and your messages in the language the user writes in. The file names in the table above and the technical keys (data model fields, table names, environment variables) stay in English in every language; headings and prose follow the user's language. If the app's interface is in a different language from the conversation, ask nothing: use the language the user states for the app in the app copy and in the output constraints of `04`, and the conversation language everywhere else.
+Write the knowledge base and your messages in the language the user writes in. The file names in the table above and the technical keys (data model fields, table names, environment variables) stay in English in every language; headings and prose follow the user's language. If the app's interface is in a different language from the conversation, ask nothing: use the language the user states for the app in the app copy, in the style examples of `04` and in its output constraints, and the conversation language everywhere else. If the user states no language for the app, it is the conversation language. If the user asks for the files in a language other than the one they write in, that request wins. Headings and field labels quoted in these instructions and in the templates ("Done when", "Revisit when", "If something breaks") are translated like the rest.
 
-Voice rules depend on the language. Read `references/voice-<language>.md` (`voice-en.md`, `voice-it.md`) for the output language. If there is no file for that language, apply `voice-en.md` and translate its banned-word list with the closest equivalents.
+Voice rules depend on the language. Read `references/voice-<language>.md` (`voice-en.md`, `voice-it.md`) for the output language. If there is no file for that language, apply `voice-en.md` and translate its banned-word list with the closest equivalents. In a language with two forms of address, use the informal one unless the user writes formally.
 
 ## Flow
 
@@ -73,7 +73,7 @@ What comes from where:
 - derived by you: principles, design system tokens and components, architecture, data model, DB schema, tasks, prompt sequence, domain context of `04`;
 - fixed: the voice rules and the structure of the permanent rules.
 
-For the domain context of `04` write a first version starting from the idea. The risk of this draft is that it fills up with plausible sentences that hold for any app of the same kind, which is what the domain context exists to avoid. So mark every sentence you draw from your general knowledge, and not from what the user wrote, with the verify marker at the end: `[to verify]` in English, `[da verificare]` in Italian, the translated equivalent in other languages, always in square brackets and always the same within a project. The user then knows where to look. The example of a well-made context is in `references/runtime-ai-context-example.md`.
+For the domain context of `04` write a first version starting from the idea. The risk of this draft is that it fills up with plausible sentences that would fit any app of the same kind, which is what the domain context exists to avoid. So mark every sentence you draw from your general knowledge, and not from what the user wrote, with the verify marker at the end: `[to verify]` in English, `[da verificare]` in Italian, the translated equivalent in other languages, always in square brackets and always the same within a project. The user then knows where to look. The example of a well-made context is in `references/runtime-ai-context-example.md`.
 
 The same marker applies in all other files to content the user named without writing it. If the idea says "three guiding questions" and does not list them, you draft them, each with the marker, instead of leaving a pointer to something that does not exist.
 
@@ -92,13 +92,13 @@ The files are written at different moments and contradict each other easily. Bef
 
 ### 5. Deliver
 
-Write the files in a folder named after the project. On Claude.ai the folder is `/mnt/user-data/outputs/<project-name>/` and you present it with `present_files`; in Claude Code write to `docs/` in the repository root and `CLAUDE.md` in the root. In the delivery message say in two or three sentences which file to start from and which parts carry the verify marker. No summary of the files: the placement index in `03` already does that job.
+Write the files in a folder named after the project. On Claude.ai the folder is `/mnt/user-data/outputs/<project-name>/` and you present it with `present_files`; in Claude Code write to `docs/` in the repository root and `CLAUDE.md` in the root; if a `CLAUDE.md` already exists, do not overwrite it: write yours to `docs/proposed-CLAUDE.md` and say so. In the delivery message say in two or three sentences which file to start from and which parts carry the verify marker. No summary of the files: the placement index in `03` already does that job.
 
 ## Voice rules
 
 The voice rules live in `references/voice-<language>.md`. They apply in two places: in the files you write and in your messages to the user, and inside the project, because you copy them into the permanent rules (`00`) and into the output constraints of `04`, so they end up in the app copy and in the answers of the AI at runtime.
 
-If the app is in another language than the knowledge base, the rules of register and style hold all the same and the banned-word list is the one for the app's language.
+If the app is in a different language from the knowledge base, the rules of register and style still apply and the banned-word list is the one for the app's language.
 
 ## Reference files
 

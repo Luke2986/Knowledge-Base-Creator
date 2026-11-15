@@ -1,4 +1,4 @@
-<!-- TEMPLATE. Only if the app uses AI at runtime. It is the system prompt of the server-side function, it does not go in the builder's knowledge. Calibrate the specificity on references/runtime-ai-context-example.md. Put the verify marker of the output language at the end of every sentence drawn from general knowledge and not from the idea or the user's answers. Write it in the language the runtime AI must answer in. -->
+<!-- TEMPLATE. Only if the app uses AI at runtime. It is the system prompt of the server-side function, it does not go in the builder's knowledge. Calibrate the specificity on references/runtime-ai-context-example.md. Put the verify marker of the output language at the end of every sentence drawn from general knowledge and not from the idea or the user's answers. Write it in the output language, so the user can check the sentences that carry the verify marker; write the two style examples in the language the runtime AI must answer in, and name that language in the output constraints. -->
 
 # Context for the runtime AI: <what it generates>
 
@@ -19,7 +19,7 @@ To avoid: <vague example>. Why it does not work, in one sentence.
 
 ## Quality checklist
 - It starts from the user's input, not from standard advice.
-- It does not hold for anyone: with a different user, it would change.
+- It would not fit just anyone: with a different user, it would change.
 - It can be carried out without further explanation.
 - No motivational language, no buzzwords.
 

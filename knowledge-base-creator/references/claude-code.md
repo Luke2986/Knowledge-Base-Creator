@@ -30,4 +30,4 @@ On Claude Code the prompts are tasks. Each one has:
 
 Prompt 0 goes in plan mode: Claude Code reads `CLAUDE.md` and `docs/`, proposes the plan and waits for approval.
 
-In the "If something breaks" section: `git` is the safety net, so go back to the last commit that worked and rephrase the task more narrowly.
+In the "If something breaks" section: `git` lets you go back, so return to the last commit that worked and rephrase the task more narrowly.

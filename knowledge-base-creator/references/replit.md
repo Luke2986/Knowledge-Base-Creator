@@ -1,7 +1,7 @@
 # Replit
 
 ## Stack
-Not imposed. Propose a stack with a one-line reason and ask only for confirmation. Starting proposal for a web app with a backend: React and Vite in the frontend, Express in the server, Drizzle as ORM on PostgreSQL, all in the same project. Reason to give the user: it is the stack Replit's Agent handles with the least friction, with a single project to deploy. If the app has no backend, React and Vite are enough.
+Not imposed. Propose a stack with a one-line reason and ask only for confirmation. Starting proposal for a web app with a backend: React and Vite on the frontend, Express on the server, Drizzle as ORM on PostgreSQL, all in the same project. Reason to give the user: it is the stack Replit's Agent handles with the least friction, with a single project to deploy. If the app has no backend, React and Vite are enough.
 
 ## Where each file goes
 The Agent's permanent context lives in the `replit.md` file in the project root, which the Agent rereads at every session.
@@ -13,7 +13,7 @@ The Agent's permanent context lives in the `replit.md` file in the project root,
 The placement index in `03` says: create `replit.md` with this content, create the `docs/` folder with these files, then give prompt 0.
 
 ## Database
-- Built-in PostgreSQL: it is enabled from the project and adds `DATABASE_URL` and the other credentials to the environment variables by itself, with separate development and production databases. Some guides report that the database goes to sleep after a few minutes without queries: add a task to `06` to handle reconnection, and in `05` a note to check against the current documentation.
+- Built-in PostgreSQL: it is enabled from the project and adds `DATABASE_URL` and the other credentials to the environment variables automatically, with separate development and production databases. Some guides report that the database goes to sleep after a few minutes without queries: add a task to `06` to handle reconnection, and in `05` a note to check against the current documentation.
 - Supabase: credentials go in Replit's Secrets, never in the code. With multiple users, RLS policies on every table with personal data.
 - No database: localStorage, as for the other tools.
 
